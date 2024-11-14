@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa's Letter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Dongle&family=Gasoek+One&family=Hahmlet:wght@100..900&family=Poor+Story&display=swap"
+        rel="stylesheet">
+        
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #080825;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .fade-in-text {
+            font-family: 'Gasoek One', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: clamp(30px, 15vw, 150px);
+            /* 반응형 글꼴 크기 */
+            text-align: center;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 4s forwards;
+            margin: 0;
+            transform: translateY(-90px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        button {
+            background: none;
+            padding: 10px 20px;
+            font-size: clamp(50px, 18vw, 150px);
+            margin-left: -23px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: -100px;
+            width: clamp(100px, 15vw, 300px);
+            height: auto;
+        }
+
+        button:hover {
+            color: yellow;
+        }
+
+        .snow {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 3px 3px white;
+            top: -10px;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .blinking-text {
+            font-weight: bold;
+            font-family: 'Diphylleia', sans-serif;
+            color: white;
+            font-size: clamp(10px, 3.8vw, 35px);
+            animation: fadeBlink 3s ease-in-out infinite;
+            text-align: center;
+            margin-top: -3px;
+        }
+
+        @keyframes fadeBlink {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="fade-in-text">
+        <span style="color: white;"> 산타의 </span>
+        <span style="color: yellow;"> 편지 </span>
+    </div>
+
+    <a href="choice.html" target="_blank">
+        <button id="textButton" onmouseover="changeText()" onmouseout="resetText()">💌</button>
+    </a>
+
+    <p class="blinking-text">💌를 눌러서 익명으로 편지를 보내고,받을 수 있어요!</p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            for (let i = 0; i < 200; i++) {
+                const snow = document.createElement("div");
+                snow.className = "snow";
+                snow.style.opacity = Math.random();
+
+                // 화면 전체 너비에 눈이 내리도록 수정
+                const startX = Math.random() * 100 - 50; // -50vw ~ +50vw
+                const endX = startX + (Math.random() * 20 - 10);
+                const scale = Math.max(Math.random(), 0.5);
+
+                const keyframe = [
+                    { transform: `translate(${startX}vw, 0vh) scale(${scale})` },
+                    { transform: `translate(${endX}vw, 100vh) scale(${scale})` },
+                ];
+
+                const option = {
+                    duration: 15000 + Math.random() * 5000,
+                    easing: "linear",
+                    iterations: Infinity,
+                    delay: -Math.random() * 20000,
+                };
+
+                snow.animate(keyframe, option);
+                document.body.appendChild(snow);
+            }
+        });
+
+        function changeText() {
+            document.getElementById("textButton").innerHTML = "📝";
+        }
+
+        function resetText() {
+            document.getElementById("textButton").innerHTML = "💌";
+        }      
+    </script>
+</body>
+
+</html>
