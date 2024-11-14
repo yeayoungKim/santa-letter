@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Santa's Letter</title>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Dongle&family=Gasoek+One&family=Hahmlet:wght@100..900&family=Poor+Story&display=swap"
+        rel="stylesheet">
+    <style>
+        /* 눈송이 애니메이션 */
+        .snow {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 3px 3px white;
+            top: -10px;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* 전체 배경 */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #080825;
+            overflow: auto;
+            /* 스크롤 가능하도록 수정 */
+            font-family: 'Diphylleia', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* 전체 페이지의 최소 높이 */
+        }
+
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 100px 100px 100px;
+            border-radius: 50px;
+            color: white;
+            width: 80%;
+            max-width: 70%;
+            text-align: center;
+            position: relative;
+            height: 80vh;
+            overflow-y: auto;
+            /* 세로 스크롤 추가 */
+        }
+
+        /* 글씨를 감싸는 요소 */
+        .content {
+            position: relative;
+            top: 60px;
+            /* 글씨를 내려주는 값 */
+        }
+
+        #button1,
+        #button2,
+        #button3 {
+            width: 600px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.811);
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: 37px;
+            font-family: 'Diphylleia', sans-serif;
+            transition: background-color 0.3s;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #button1:hover,
+        #button2:hover,
+        #button3:hover {
+            background-color: #ffffff;
+        }
+
+        #font1 {
+            font-family: 'Diphylleia', sans-serif;
+            font-size: 54px;
+        }
+
+        .blinking-text {
+            font-weight: 40%;
+            font-family: 'Diphylleia', sans-serif;
+            color: white;
+            animation: fadeBlink 3s ease-in-out infinite;
+            margin-top: 1%;
+            text-align: center;
+            font-size: 42px;
+        }
+
+        @keyframes fadeBlink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="content">
+            <p id="font1"> 🎄 <span style="color:yellow;">산타의 편지</span>는<br> 익명의 사람에게 편지를 쓰고, 익명의 사람에게 편지를 받는
+                플랫폼입니다<br><br>
+                모든 편지는 산타의 필기체로 작성한 <span
+                    style="color:rgb(70, 255, 237)">손편지</span>로 보내집니다 <br><br>
+                <span style="color:yellow;">산타의 편지</span>의 모든 서비스는<span
+                    style="color:rgb(70, 255, 237);">무료</span>입니다! <br><br>크리스마스의 특별한 추억을 <br>만들어보세요 ☺️
+                <br><br>
+            </p>
+        </div>
+        <a href="mailletter.html">
+            <button id="button1">💌 Marry Christmas! 🎄</button>
+            <p class="blinking-text">💌🎄를 클릭하세요!</p>
+        </a>
+    </div>
+    <script>
+        // 눈송이 애니메이션 추가
+        for (let i = 0; i < 200; i++) {
+            const snow = document.createElement("div");
+            snow.className = "snow";
+            snow.style.opacity = Math.random();
+
+            const startX = Math.random() * 100 - 50;
+            const endX = startX + (Math.random() * 20 - 10);
+            const scale = Math.max(Math.random(), 0.5);
+
+            const keyframe = [
+                { transform: `translate(${startX}vw, 0vh) scale(${scale})` },
+                { transform: `translate(${endX}vw, 100vh) scale(${scale})` },
+            ];
+
+            const option = {
+                duration: 15000 + Math.random() * 5000,
+                easing: "linear",
+                iterations: Infinity,
+                delay: -Math.random() * 20000,
+            };
+
+            snow.animate(keyframe, option);
+            document.body.appendChild(snow);
+        }
+    </script>
+
+</body>
+
+</html>
