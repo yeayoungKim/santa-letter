@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Santa's Letter</title>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Dongle&family=Gasoek+One&family=Hahmlet:wght@100..900&family=Poor+Story&display=swap"
+        rel="stylesheet">
+    <style>
+        /* 눈송이 애니메이션 */
+        .snow {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 3px 3px white;
+            top: -10px;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* 전체 배경 */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #080825;
+            overflow: auto;
+            font-family: 'Diphylleia', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 100px 100px 100px;
+            border-radius: 50px;
+            color: white;
+            width: 80%;
+            max-width: 70%;
+            text-align: center;
+            position: relative;
+            height: 80vh;
+            overflow-y: auto;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .input1,
+        .input2,
+        .input3,
+        .input4,
+        .input5 {
+            width: 65%;
+            height: 50px;
+            padding: 12px;
+            font-size: 25px;
+            border-radius: 50px;
+            border: none;
+            background-color: #ffffff;
+            color: black;
+            outline: none;
+            font-family: 'Diphylleia', sans-serif;
+        }
+
+        .blinking-text {
+            font-weight: 40%;
+            font-family: 'Diphylleia', sans-serif;
+            color: white;
+            animation: fadeBlink 3s ease-in-out infinite;
+            margin-top: 6%;
+            text-align: center;
+            font-size: 35px;
+        }
+
+        @keyframes fadeBlink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        #button1 {
+            width: 350px;
+            height: 80px;
+            background-color: rgba(248, 217, 163, 0.811);
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: 34px;
+            font-family: 'Diphylleia', sans-serif;
+            margin-top: 10%;
+            margin-bottom: 20px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 23%;
+        }
+
+        .checkbox-container {
+            font-size: 27px;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .checkbox-label {
+            font-size: 27px;
+            margin-left: 10px;
+        }
+
+        .checkbox-input {
+            transform: scale(1.5);
+            margin-top: 0;
+        }
+
+        #font {
+            font-size: 32px;
+        }
+
+        #font1 {
+            font-size: 24px;
+        }
+
+        /* 기존 스타일 코드... */
+
+        /* 모달 배경 */
+        .modal {
+            display: none;
+            /* 기본적으로 숨김 */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.54);
+        }
+
+        /* 모달 콘텐츠 */
+        .modal-content {
+            background-color: #ffffff;
+            color: #000;
+            margin: 15% auto;
+            padding: 6px;
+            width: 70%;
+            max-width: 800px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30%;
+            height: 40%;
+            font-size: 20px;
+        }
+
+        /* 닫기 버튼 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #fontmo {
+            font-size: 25px;
+        }
+
+        #font4 {
+            font-size: 26px;
+        }
+
+        /* 기본 상태: 콘텐츠는 숨겨짐 */
+        #content {
+            overflow: hidden;
+            height: 0;
+            transition: height 0.5s ease-out;
+        }
+
+        #content.show {
+            height: auto;
+        }
+
+        /* 버튼 클릭 후 콘텐츠가 펼쳐진 상태 */
+        #content.show {
+            height: auto;
+            /* 콘텐츠 높이를 자동으로 확장 */
+        }
+        #toggle-btn {
+            font-size: 20px; /* 글자 크기 */
+            padding: 10px 20px; /* 내부 여백 */
+            width: 80%; /* 버튼 너비 */
+            height: 50px; /* 버튼 높이 */
+            background-color: #ffffff; /* 버튼 배경색 */
+            border: 2px solid #ccc; /* 버튼 테두리 */
+            border-radius: 50px; /* 모서리 둥글게 */
+            cursor: pointer; /* 마우스 포인터 모양 */
+            font-family: 'Diphylleia', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <p class="blinking-text">편지는 12월 24일에 맞춰 발송됩니다! 💌</p>
+
+        <form id="message-form">
+            <!-- 이름 입력 부분 -->
+            <div class="input-group">
+                <p id="font">이름</p>
+                <input type="text" id="nickname" class="input1" placeholder="이름을 입력해주세요" required>
+            </div>
+
+            <!-- 전화번호 입력 부분 -->
+            <div class="input-group">
+                <p id="font">전화번호</p>
+                <input type="text" id="phone" class="input2" placeholder="전화번호를 입력해주세요" required>
+            </div>
+
+            <!-- 주소 입력 부분 -->
+            <div class="input-group">
+                <p id="font">주소</p>
+                <input type="text" id="address" class="input3" placeholder="주소를 정확히 입력해주세요" required>
+            </div>
+            <div class="input-group">
+                <p id="font">우편번호</p>
+                <input type="text" id="zipcode" class="input4" placeholder="우편번호를 입력해주세요" required>
+            </div>
+
+            <!-- 편지 내용 입력 부분 -->
+            <div class="input-group">
+                <p id="font">받고싶은 편지의 내용,특정 연령층을 적어주세요. 조건과 맞는 편지가 없으면 랜덤으로 발송됩니다.</p>
+                <input type="text" id="letter-content" class="input5" placeholder="원하는 편지의 내용과 특정 연령층" required>
+            </div><br>
+            <p id="font4">
+                ✔︎ 편지 전송을 취소하고 싶으신 분은 인스타 <a
+                    href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
+                        style="color:rgb(251, 255, 3);"><br>@santa.s_letter</span></a>으로 DM 보내주세요.<br>
+                ✔︎ 편지를 받으신 분들 중, 편지를 보낸 익명의 사람에게 <span style="color:rgb(255, 157, 157);">답장</span>을
+                하고싶다면 편지를 쓴 분께 <br>동의를 구하고 답장을 보낼 수 있습니다!<br><br>
+            </p>
+            </p>
+
+            <div class="checkbox-container">
+                <label for="terms-checkbox" class="checkbox-label">
+                    <input type="checkbox" id="terms-checkbox" class="checkbox-input"> 개인정보 처리 방침과 이용약관에 동의합니다.
+                    <br>
+                    <input type="checkbox" id="receive-checkbox" class="checkbox-input"> 수신거부(편지 발송여부와 확인을 위한 연락을 받을 수
+                    없습니다.)<br><br>
+                    <button type="button" id="toggle-btn">↓ 개인정보 처리 방침과 이용약관</button>
+
+                    <div id="content">
+                        <p>저희는 귀하의 개인정보를 다음과 같은 목적을 위해 수집합니다: 서비스 제공, 이용자 지원, 마케팅 및 광고 활동 등. 수집된 개인정보 중 주소는 편지를 보내기
+                            전까지 보관되며, 편지 발송 후 즉시 폐기됩니다.</p>
+                        <p>이름과 전화번호는 [6개월]동안 보관됩니다. 귀하의 개인정보는 제3자와 공유되지 않으며, 이를 보호하기 위한 조치를 취합니다.</p>
+                        <p>이 서비스를 이용함으로써 귀하는 본 약관에 동의하는 것으로 간주됩니다.귀하는 서비스의 모든 규정을 준수하고, 불법적인 목적으로 서비스를 이용하지 않겠다고
+                            서약합니다.</p>
+                        <p>귀하는 본 서비스를 이용하기 위해서 개인정보 수집 및 이용에 동의합니다. 개인정보는 서비스 제공을 위해 필요한 범위에서만 수집되며, 다른 용도로
+                            사용되지 않습니다.</p>
+                    </div>
+
+            </div>
+
+            <button type="submit" id="button1">완료</button>
+        </form>
+        <!-- 모달 요소 추가 -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>💌 편지가 발송되었습니다! <br></h2>
+                <p id="fontmo"><br> ✔︎ '산타의 편지'<a
+                        href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
+                            style="color:rgb(212, 0, 208);">인스타그램</span></a>을 팔로우 <br>해주신 분들에 한해서,<br>
+                    추첨을 통해 12월 25일에 맞춰<br> <span style="color:rgb(19, 27, 111);">산타의 선물</span>과 <span
+                        style="color:rgb(91, 101, 0);">산타의 편지</span>가 <br>작성한 산타의 손편지를 보내드립니다<br>
+                <p id="fontmo">*<a
+                        href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
+                            style="color:rgb(212, 0, 208);">@santa.s-letter</span></a>← 클릭하면 자동으로 연결됩니다<br></p>
+                <p id="fontmo">모든분들 따숩고 평안한 크리스마스 보내시길 바라겠습니다. <br>산타의 편지를 이용해주셔서 감사합니다! 💌</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("toggle-btn").addEventListener("click", function () {
+        const content = document.getElementById("content");
+        content.classList.toggle("show");
+    });
+
+    for (let i = 0; i < 200; i++) {
+        const snow = document.createElement("div");
+        snow.className = "snow";
+        snow.style.opacity = Math.random();
+        const startX = Math.random() * 100 - 50;
+        const endX = startX + (Math.random() * 20 - 10);
+        const scale = Math.max(Math.random(), 0.5);
+
+        const keyframe = [
+            { transform: `translate(${startX}vw, 0vh) scale(${scale})` },
+            { transform: `translate(${endX}vw, 100vh) scale(${scale})` },
+        ];
+
+        const option = {
+            duration: 15000 + Math.random() * 5000,
+            easing: "linear",
+            iterations: Infinity,
+            delay: -Math.random() * 20000,
+        };
+
+        snow.animate(keyframe, option);
+        document.body.appendChild(snow);
+    }
+    const termsCheckbox = document.getElementById("terms-checkbox");
+    const submitButton = document.getElementById("button1");
+
+    // 완료 버튼 클릭 시 체크 여부 확인
+    submitButton.addEventListener("click", function (event) {
+        if (!termsCheckbox.checked) {
+            event.preventDefault(); // 기본 제출 동작 막기
+            alert("개인정보 처리 방침과 이용약관에 동의해야 합니다."); // 팝업 창 표시
+        } else {
+            // 제출 버튼 클릭 시 모달 열기
+            modal.style.display = "block"; // 모달 열기
+        }
+    });
+
+    // 닫기 버튼 클릭 시 모달 닫기
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // 모달 외부 클릭 시 모달 닫기
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+</script>
+
+</html>
