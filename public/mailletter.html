@@ -74,14 +74,14 @@
 
         .modal-content {
             background-color: #ffffff;
-            padding: 75px;
             border-radius: 8px;
+            padding: 30px;
             width: 80%;
             max-width: 800px;
             color: black;
             text-align: center;
-            height: 450px;
-            font-size: 30px;
+            height: 650px;
+            font-size: 40px;
         }
 
         .close-button {
@@ -105,10 +105,10 @@
         }
 
         .input1 {
-            width: 50%;
-            height: 64px;
+            width: 55%;
+            height: 77px;
             padding: 10px;
-            font-size: 25px;
+            font-size: 30px;
             border-radius: 50px;
             border: none;
             background-color: #ffffff;
@@ -116,18 +116,18 @@
             outline: none;
             font-family: 'Diphylleia', sans-serif;
             margin-top: 10%;
-            margin-left: 33%;
+            margin-left: 24%;
         }
 
         button {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             background-color: #ecd8b7;
             color: black;
             border: none;
             cursor: pointer;
-            font-size: 21px;
+            font-size: 35px;
             font-family: 'Diphylleia', sans-serif;
             transition: background-color 0.3s;
             margin-top: 10%;
@@ -162,10 +162,9 @@
         <div class="modal-content">
             <p id="introduction">
                 🎅🏻 익명의 사람에게 편지를 써보세요 <br>
-                산타의 편지가 손편지로 작성하여 익명으로 보내드립니다.<br><br>
-                • 5줄 이상의 진정성있는 편지를 써주세요 😍<br>
-                • 편지 도착일자는 12월 24일입니다! 🎅🏻🎄<br>
-                • 상대방을 비방하는 내용, 장난성 편지는 보내지지 않아요 🥲<br>
+                산타의 편지가 손편지로 작성하여 <br>익명으로 보내드립니다.<br><br>
+                • 5줄 이상의 진정성있는 편지를 써주세요<br>
+                • 비방 또는 장난성 편지는 보내지지 않아요<br>
                 • 보내는 이는 '닉네임'으로 보내집니다.
             </p>
             <button class="close-button" onclick="closeModal()">닫기</button>
@@ -179,9 +178,10 @@
             <button type="button" onclick="confirmLink(event)">전송</button> <!-- 'type="button"'을 추가 -->
         </form>
         <!-- 메시지 입력창 -->
-        <textarea id="message-box" class="input2" placeholder="🎄 내가 이 편지를 받으면 어떨까?를 상상하면서 적어보세요☺️" required></textarea>
+        <textarea id="message-box" class="input2" placeholder="🎄 내가 이 편지를 받으면 어떨까?
+    상상하면서 적어보세요 ☺️" required></textarea>
     </div>
-
+ 
     <script>
         // 페이지 로드 시 모달을 띄우는 함수
         window.onload = function () {
@@ -220,7 +220,7 @@
                     .then(response => {
                         if (response.ok) {
                             alert('편지가 성공적으로 전송되었습니다!');
-                            window.location.href = 'a.html';  // 전송 후 a.html로 이동
+                            window.location.href = 'am.html';  // 전송 후 a.html로 이동
                         } else {
                             alert('편지 전송에 실패했습니다.');
                         }

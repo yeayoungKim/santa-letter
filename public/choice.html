@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Santa's Letter</title>
     <meta charset="UTF-8">
@@ -22,15 +21,8 @@
         }
 
         @keyframes fall {
-            from {
-                transform: translateY(-10vh);
-                opacity: 1;
-            }
-
-            to {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
+            from { transform: translateY(-10vh); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
         }
 
         /* 전체 배경 */
@@ -39,13 +31,11 @@
             padding: 0;
             background-color: #080825;
             overflow: auto;
-            /* 스크롤 가능하도록 수정 */
             font-family: 'Diphylleia', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* 전체 페이지의 최소 높이 */
         }
 
         .overlay {
@@ -59,40 +49,56 @@
             position: relative;
             height: 80vh;
             overflow-y: auto;
-            /* 세로 스크롤 추가 */
         }
 
-        /* 글씨를 감싸는 요소 */
         .content {
             position: relative;
             top: 60px;
-            /* 글씨를 내려주는 값 */
         }
 
-        #button1,
-        #button2,
-        #button3 {
-            width: 600px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.811);
+        /* 버튼 디자인 */
+        #button1 {
+            width: 650px;
+            height: 110px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.811), #ffeeba);
             color: black;
             border: none;
             cursor: pointer;
-            font-size: 37px;
+            font-size: 43px;
             font-family: 'Diphylleia', sans-serif;
-            transition: background-color 0.3s;
-            margin: 0 auto;
-            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            margin: 0 auto 20px;
             border-radius: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        #button1:hover,
-        #button2:hover,
-        #button3:hover {
-            background-color: #ffffff;
+        #button1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: skewX(-30deg);
+            transition: 0.7s;
+        }
+
+        #button1:hover::before {
+            left: 100%;
+            transition: 0.7s;
+        }
+
+        #button1:hover {
+            background: #fff8dc;
+            color: #ff4500;
+            transform: scale(1.05);
+            box-shadow: 0px 5px 25px rgba(255, 69, 0, 0.6);
         }
 
         #font1 {
@@ -107,23 +113,15 @@
             animation: fadeBlink 3s ease-in-out infinite;
             margin-top: 1%;
             text-align: center;
-            font-size: 42px;
+            font-size: 45px;
         }
 
         @keyframes fadeBlink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
-
 <body>
     <div class="overlay">
         <div class="content">
@@ -142,33 +140,26 @@
         </a>
     </div>
     <script>
-        // 눈송이 애니메이션 추가
         for (let i = 0; i < 200; i++) {
             const snow = document.createElement("div");
             snow.className = "snow";
             snow.style.opacity = Math.random();
-
             const startX = Math.random() * 100 - 50;
             const endX = startX + (Math.random() * 20 - 10);
             const scale = Math.max(Math.random(), 0.5);
-
             const keyframe = [
                 { transform: `translate(${startX}vw, 0vh) scale(${scale})` },
                 { transform: `translate(${endX}vw, 100vh) scale(${scale})` },
             ];
-
             const option = {
                 duration: 15000 + Math.random() * 5000,
                 easing: "linear",
                 iterations: Infinity,
                 delay: -Math.random() * 20000,
             };
-
             snow.animate(keyframe, option);
             document.body.appendChild(snow);
         }
     </script>
-
 </body>
-
 </html>
