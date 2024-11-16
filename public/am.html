@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Dongle&family=Gasoek+One&family=Hahmlet:wght@100..900&family=Poor+Story&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Dongle&family=Gasoek+One&family=Hahmlet:wght@100..900&family=Poor+Story&display=swap"
+            rel="stylesheet">
     <style>
         /* 눈송이 애니메이션 */
         .snow {
@@ -223,6 +223,7 @@
             height: auto;
             /* 콘텐츠 높이를 자동으로 확장 */
         }
+
         #toggle-btn {
             font-size: 20px; /* 글자 크기 */
             padding: 10px 20px; /* 내부 여백 */
@@ -234,101 +235,109 @@
             cursor: pointer; /* 마우스 포인터 모양 */
             font-family: 'Diphylleia', sans-serif;
         }
-        #font9{
+
+        #font9 {
             font-size: 21px;
         }
     </style>
 </head>
 
 <body>
-    <div class="overlay">
-        <p class="blinking-text">편지는 12월 24일에 맞춰 발송됩니다! 💌</p>
+<div class="overlay">
+    <p class="blinking-text">편지는 12월 24일에 맞춰 발송됩니다! 💌</p>
 
-        <form id="message-form">
-            <!-- 이름 입력 부분 -->
-            <div class="input-group">
-                <p id="font">이름 (실명)</p>
-                <input type="text" id="nickname" class="input1" placeholder="이름을 입력해주세요" required>
-            </div>
+    <form id="message-form">
+        <!-- 이름 입력 부분 -->
+        <div class="input-group">
+            <p id="font">이름 (실명)</p>
+            <input type="text" id="nickname" class="input1" placeholder="이름을 입력해주세요" required>
+        </div>
 
-            <!-- 전화번호 입력 부분 -->
-            <div class="input-group">
-                <p id="font">전화번호</p>
-                <p id ='font9'>* 편지 발송확인 연락,편지를 받은 사람이 답장을 원할때 동의구하는 연락,<br>주소확인 연락 등을 보낼 수 있습니다.</p>
-                <input type="text" id="phone" class="input2" placeholder="전화번호를 입력해주세요" required>
-            </div>
+        <!-- 전화번호 입력 부분 -->
+        <div class="input-group">
+            <p id="font">전화번호</p>
+            <p id='font9'>* 편지 발송확인 연락,편지를 받은 사람이 답장을 원할때 동의구하는 연락,<br>주소확인 연락 등을 보낼 수 있습니다.</p>
+            <input type="text" id="phone" class="input2" placeholder="전화번호를 입력해주세요" required>
+        </div>
 
-            <!-- 주소 입력 부분 -->
-            <div class="input-group">
-                <p id="font">편지 받을 주소</p>
-                <p id ='font9'>* 주소는 편지가 보내짐과 동시에 즉시 폐기됩니다.</p>
-                <input type="text" id="address" class="input3" placeholder="주소를 정확히 입력해주세요" required>
-            </div>
-            <div class="input-group">
-                <p id="font">우편번호</p>
-                <input type="text" id="zipcode" class="input4" placeholder="우편번호를 입력해주세요" required>
-            </div>
+        <!-- 주소 입력 부분 -->
+        <div class="input-group">
+            <p id="font">편지 받을 주소</p>
+            <p id='font'>* 주소는 편지가 보내짐과 동시에 즉시 폐기됩니다.</p>
+            <input type="text" id="address" class="input3" placeholder="주소를 정확히 입력해주세요" required>
+        </div>
 
-            <!-- 편지 내용 입력 부분 -->
-            <div class="input-group">
-                <p id="font">받고싶은 편지의 내용,특정 연령층을 적어주세요. 조건과 맞는 편지가 없으면 랜덤으로 발송됩니다.</p>
-                <input type="text" id="letter-content" class="input5" placeholder="원하는 편지의 내용과 특정 연령층" required>
-            </div><br>
-            <p id="font4">
-                ✔︎ 편지 전송을 취소하고 싶으신 분은 인스타 <a
+        <div class="input-group">
+            <p id="font">우편번호</p>
+            <input type="text" id="zipcode" class="input4" placeholder="우편번호를 입력해주세요" required>
+        </div>
+
+        <!-- 편지 내용 입력 부분 -->
+        <div class="input-group">
+            <p id="font">받고싶은 편지의 내용,특정 연령층을 적어주세요. 조건과 맞는 편지가 없으면 랜덤으로 발송됩니다.</p>
+            <input type="text" id="letter-content" class="input5" placeholder="원하는 편지의 내용과 특정 연령층" required>
+        </div>
+
+        <br>
+        <p id="font4">
+            ✔︎ 편지 전송을 취소하고 싶으신 분은 인스타 <a
+                href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
+                style="color:rgb(251, 255, 3);"><br>@santa.s_letter</span></a>으로 DM 보내주세요.<br>
+            ✔︎ 편지를 받으신 분들 중, 편지를 보낸 익명의 사람에게 <span style="color:rgb(255, 157, 157);">답장</span>을
+            하고싶다면 편지를 쓴 분께 <br>동의를 구하고 답장을 보낼 수 있습니다!<br><br>
+        </p>
+        </p>
+
+        <div class="checkbox-container">
+            <label for="terms-checkbox" class="checkbox-label">
+                <input type="checkbox" id="terms-checkbox" class="checkbox-input"> 개인정보 처리 방침과 이용약관에 동의합니다.<br>
+            </label>
+        </div>
+        <div>
+            <label for="reject-checkbox" class="checkbox-label">
+                <input type="checkbox" id="reject-checkbox" class="checkbox-input"> 수신 거부(편지 발송여부와 확인을 위한 연락을 받을 수
+                없습니다.)<br>
+            </label>
+        </div>
+
+
+        <button type="button" id="toggle-btn">↓ 개인정보 처리 방침과 이용약관</button>
+
+        <div id="content">
+            <p>저희는 귀하의 개인정보를 다음과 같은 목적을 위해 수집합니다: 서비스 제공, 이용자 지원, 마케팅 및 광고 활동 등. 수집된 개인정보 중 주소는 편지를 보내기
+                전까지 보관되며, 편지 발송 후 즉시 폐기됩니다.</p>
+            <p>이름과 전화번호는 [6개월]동안 보관됩니다. 귀하의 개인정보는 제3자와 공유되지 않으며, 이를 보호하기 위한 조치를 취합니다.</p>
+            <p>이 서비스를 이용함으로써 귀하는 본 약관에 동의하는 것으로 간주됩니다.귀하는 서비스의 모든 규정을 준수하고, 불법적인 목적으로 서비스를 이용하지 않겠다고
+                서약합니다.</p>
+            <p>귀하는 본 서비스를 이용하기 위해서 개인정보 수집 및 이용에 동의합니다. 개인정보는 서비스 제공을 위해 필요한 범위에서만 수집되며, 다른 용도로
+                사용되지 않습니다.</p>
+        </div>
+
+        <button type="submit" id="button1">완료</button>
+    </form>
+
+
+    <!-- 모달 요소 추가 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>💌 편지가 발송되었습니다! <br></h2>
+            <p id="fontmo"><br> ✔︎ '산타의 편지'<a
                     href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
-                        style="color:rgb(251, 255, 3);"><br>@santa.s_letter</span></a>으로 DM 보내주세요.<br>
-                ✔︎ 편지를 받으신 분들 중, 편지를 보낸 익명의 사람에게 <span style="color:rgb(255, 157, 157);">답장</span>을
-                하고싶다면 편지를 쓴 분께 <br>동의를 구하고 답장을 보낼 수 있습니다!<br><br>
-            </p>
-            </p>
-
-            <div class="checkbox-container">
-                <label for="terms-checkbox" class="checkbox-label">
-                    <input type="checkbox" id="terms-checkbox" class="checkbox-input"> 개인정보 처리 방침과 이용약관에 동의합니다.
-                    <br>
-                    <input type="checkbox" id="receive-checkbox" class="checkbox-input"> 수신거부(편지 발송여부와 확인을 위한 연락을 받을 수
-                    없습니다.)<br><br>
-                    <button type="button" id="toggle-btn">↓ 개인정보 처리 방침과 이용약관</button>
-
-                    <div id="content">
-                        <p>저희는 귀하의 개인정보를 다음과 같은 목적을 위해 수집합니다: 서비스 제공, 이용자 지원, 마케팅 및 광고 활동 등. 수집된 개인정보 중 주소는 편지를 보내기
-                            전까지 보관되며, 편지 발송 후 즉시 폐기됩니다.</p>
-                        <p>이름과 전화번호는 [6개월]동안 보관됩니다. 귀하의 개인정보는 제3자와 공유되지 않으며, 이를 보호하기 위한 조치를 취합니다.</p>
-                        <p>이 서비스를 이용함으로써 귀하는 본 약관에 동의하는 것으로 간주됩니다.귀하는 서비스의 모든 규정을 준수하고, 불법적인 목적으로 서비스를 이용하지 않겠다고
-                            서약합니다.</p>
-                        <p>귀하는 본 서비스를 이용하기 위해서 개인정보 수집 및 이용에 동의합니다. 개인정보는 서비스 제공을 위해 필요한 범위에서만 수집되며, 다른 용도로
-                            사용되지 않습니다.</p>
-                    </div>
-
-            </div>
-
-            <button type="submit" id="button1">완료</button>
-        </form>
-        <!-- 모달 요소 추가 -->
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>💌 편지가 발송되었습니다! <br></h2>
-                <p id="fontmo"><br> ✔︎ '산타의 편지'<a
-                        href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
-                            style="color:rgb(212, 0, 208);">인스타그램</span></a>을 팔로우 <br>해주신 분들에 한해서,<br>
-                    추첨을 통해 12월 25일에 맞춰<br> <span style="color:rgb(19, 27, 111);">산타의 선물</span>과 <span
+                    style="color:rgb(212, 0, 208);">인스타그램</span></a>을 팔로우 <br>해주신 분들에 한해서,<br>
+                추첨을 통해 12월 25일에 맞춰<br> <span style="color:rgb(19, 27, 111);">산타의 선물</span>과 <span
                         style="color:rgb(91, 101, 0);">산타의 편지</span>가 <br>작성한 산타의 손편지를 보내드립니다<br>
-                <p id="fontmo">*<a
-                        href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
-                            style="color:rgb(212, 0, 208);">@santa.s-letter</span></a>← 클릭하면 자동으로 연결됩니다<br></p>
-                <p id="fontmo">모든분들 따숩고 평안한 크리스마스 보내시길 바라겠습니다. <br>산타의 편지를 이용해주셔서 감사합니다! 💌</p>
-            </div>
+            <p id="fontmo">*<a
+                    href="https://www.instagram.com/santa.s_letter/profilecard/?igsh=NjRxOXA1dzFrdjhz"><span
+                    style="color:rgb(212, 0, 208);">@santa.s-letter</span></a>← 클릭하면 자동으로 연결됩니다<br></p>
+            <p id="fontmo">모든분들 따숩고 평안한 크리스마스 보내시길 바라겠습니다. <br>산타의 편지를 이용해주셔서 감사합니다! 💌</p>
         </div>
     </div>
+
+</div>
+</div>
 </body>
 <script>
-    document.getElementById("toggle-btn").addEventListener("click", function () {
-        const content = document.getElementById("content");
-        content.classList.toggle("show");
-    });
-
     for (let i = 0; i < 200; i++) {
         const snow = document.createElement("div");
         snow.className = "snow";
@@ -338,8 +347,8 @@
         const scale = Math.max(Math.random(), 0.5);
 
         const keyframe = [
-            { transform: `translate(${startX}vw, 0vh) scale(${scale})` },
-            { transform: `translate(${endX}vw, 100vh) scale(${scale})` },
+            {transform: `translate(${startX}vw, 0vh) scale(${scale})`},
+            {transform: `translate(${endX}vw, 100vh) scale(${scale})`},
         ];
 
         const option = {
@@ -352,31 +361,80 @@
         snow.animate(keyframe, option);
         document.body.appendChild(snow);
     }
-    const termsCheckbox = document.getElementById("terms-checkbox");
-    const submitButton = document.getElementById("button1");
 
-    // 완료 버튼 클릭 시 체크 여부 확인
-    submitButton.addEventListener("click", function (event) {
-        if (!termsCheckbox.checked) {
-            event.preventDefault(); // 기본 제출 동작 막기
-            alert("개인정보 처리 방침과 이용약관에 동의해야 합니다."); // 팝업 창 표시
-        } else {
-            // 제출 버튼 클릭 시 모달 열기
-            modal.style.display = "block"; // 모달 열기
-        }
-    });
+    // 모달 창 열기 및 닫기 함수
+    function openModal() {
+        const modal = document.getElementById("modal");
+        modal.style.display = "block";
+    }
 
-    // 닫기 버튼 클릭 시 모달 닫기
-    closeBtn.onclick = function () {
+    function closeModal() {
+        const modal = document.getElementById("modal");
         modal.style.display = "none";
-    };
+    }
 
-    // 모달 외부 클릭 시 모달 닫기
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    document.querySelector(".close").addEventListener("click", closeModal);
+
+    // 완료 버튼 클릭 이벤트
+    document.getElementById("button1").addEventListener("click", function (event) {
+        event.preventDefault();
+
+        // 입력 필드 값 가져오기
+        const name = document.getElementById("nickname").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const zipcode = document.getElementById("zipcode").value.trim();
+        const letterContent = document.getElementById("letter-content").value.trim();
+        const rejectChecked = document.getElementById("reject-checkbox").checked; // 수신 거부 여부
+
+
+        const termsChecked = document.getElementById("terms-checkbox").checked;
+
+
+        console.log(name, phone, address, zipcode, letterContent, rejectChecked);
+
+        // 입력값 확인
+        if (!name || !phone || !address || !zipcode || !letterContent) {
+            alert("모든 입력란을 작성해주세요.");
+            return;
         }
-    };
+
+        // 개인정보 동의 확인
+        if (!termsChecked) {
+            alert("개인정보 처리 방침과 이용 약관에 동의해주세요.");
+            return;
+        }
+
+        // 서버 전송 로직
+        const formData = {
+            name,
+            phone,
+            address,
+            zipcode,
+            letterContent,
+            rejectChecked // 수신 거부 상태 추가
+        };
+
+        fetch("/save-info", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // 전송 성공 시 모달 창 띄우기
+                    openModal();
+                } else {
+                    alert("전송 중 오류가 발생했습니다. 다시 시도해주세요.");
+                }
+            })
+            .catch(error => {
+                alert("서버 연결에 문제가 발생했습니다. 다시 시도해주세요.");
+                console.error("Error:", error);
+            });
+    });
 </script>
 
 </html>

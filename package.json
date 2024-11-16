@@ -15,5 +15,9 @@
   "description": "",
   "devDependencies": {
     "gh-pages": "^6.2.0"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "uuid": "^11.0.3"
   }
 }

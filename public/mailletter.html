@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Dongle&family=Gasoek+One&family=Hahmlet:wght@100..900&family=Poor+Story&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Dongle&family=Gasoek+One&family=Hahmlet:wght@100..900&family=Poor+Story&display=swap"
+            rel="stylesheet">
     <style>
         /* 눈송이 애니메이션 */
         .snow {
@@ -157,106 +157,106 @@
 </head>
 
 <body>
-    <!-- 모달 -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <p id="introduction">
-                🎅🏻 익명의 사람에게 편지를 써보세요 <br>
-                산타의 편지가 손편지로 작성하여 <br>익명으로 보내드립니다.<br><br>
-                • 5줄 이상의 진정성있는 편지를 써주세요<br>
-                • 비방 또는 장난성 편지는 보내지지 않아요<br>
-                • 보내는 이는 '닉네임'으로 보내집니다.
-            </p>
-            <button class="close-button" onclick="closeModal()">닫기</button>
-        </div>
+<!-- 모달 -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <p id="introduction">
+            🎅🏻 익명의 사람에게 편지를 써보세요 <br>
+            산타의 편지가 손편지로 작성하여 <br>익명으로 보내드립니다.<br><br>
+            • 5줄 이상의 진정성있는 편지를 써주세요<br>
+            • 비방 또는 장난성 편지는 보내지지 않아요<br>
+            • 보내는 이는 '닉네임'으로 보내집니다.
+        </p>
+        <button class="close-button" onclick="closeModal()">닫기</button>
     </div>
+</div>
 
-    <div class="overlay">
-        <!-- 이름 입력 및 버튼 -->
-        <form id="message-form" class="message-form1">
-            <input type="text" id="nickname" class="input1" placeholder="  닉네임을 입력해주세요" required>
-            <button type="button" onclick="confirmLink(event)">전송</button> <!-- 'type="button"'을 추가 -->
-        </form>
-        <!-- 메시지 입력창 -->
-        <textarea id="message-box" class="input2" placeholder="🎄 내가 이 편지를 받으면 어떨까?
+<div class="overlay">
+    <!-- 이름 입력 및 버튼 -->
+    <form id="message-form" class="message-form1">
+        <input type="text" id="nickname" class="input1" placeholder="  닉네임을 입력해주세요" required>
+        <button type="button" onclick="confirmLink(event)">전송</button> <!-- 'type="button"'을 추가 -->
+    </form>
+    <!-- 메시지 입력창 -->
+    <textarea id="message-box" class="input2" placeholder="🎄 내가 이 편지를 받으면 어떨까?
     상상하면서 적어보세요 ☺️" required></textarea>
-    </div>
- 
-    <script>
-        // 페이지 로드 시 모달을 띄우는 함수
-        window.onload = function () {
-            document.getElementById("modal").style.display = "flex";
+</div>
+
+<script>
+    // 페이지 로드 시 모달을 띄우는 함수
+    window.onload = function () {
+        document.getElementById("modal").style.display = "flex";
+    };
+
+    // 모달 닫기 함수
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+
+    function confirmLink(event) {
+        event.preventDefault(); // 기본 동작 방지 (폼 제출 방지)
+
+        const nickname = document.getElementById('nickname').value.trim();
+        const message = document.getElementById('message-box').value.trim();
+
+        // 닉네임과 메시지가 모두 입력되었는지 확인
+        if (!nickname || !message) {
+            alert('닉네임과 메시지를 모두 입력해주세요.');
+            return;
+        }
+
+        const userConfirmed = confirm("크리스마스 편지를 보냅니다 🎄");
+
+        // 사용자가 확인을 눌렀을 때
+        if (userConfirmed) {
+            // 서버로 메시지 전송
+            fetch('/save-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({nickname, message})
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('편지가 성공적으로 전송되었습니다!');
+                        window.location.href = 'am.html';  // 전송 후 a.html로 이동
+                    } else {
+                        alert('편지 전송에 실패했습니다.');
+                    }
+                })
+                .catch(error => {
+                    alert('서버 오류로 전송에 실패했습니다.');
+                });
+        }
+    }
+
+    // 눈송이 애니메이션 추가
+    for (let i = 0; i < 200; i++) {
+        const snow = document.createElement("div");
+        snow.className = "snow";
+        snow.style.opacity = Math.random();
+
+        const startX = Math.random() * 100 - 50;
+        const endX = startX + (Math.random() * 20 - 10);
+        const scale = Math.max(Math.random(), 0.5);
+
+        const keyframe = [
+            {transform: `translate(${startX}vw, 0vh) scale(${scale})`},
+            {transform: `translate(${endX}vw, 100vh) scale(${scale})`},
+        ];
+
+        const option = {
+            duration: 15000 + Math.random() * 5000,
+            easing: "linear",
+            iterations: Infinity,
+            delay: -Math.random() * 20000,
         };
 
-        // 모달 닫기 함수
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        }
-
-        function confirmLink(event) {
-            event.preventDefault(); // 기본 동작 방지 (폼 제출 방지)
-
-            const nickname = document.getElementById('nickname').value.trim();
-            const message = document.getElementById('message-box').value.trim();
-
-            // 닉네임과 메시지가 모두 입력되었는지 확인
-            if (!nickname || !message) {
-                alert('닉네임과 메시지를 모두 입력해주세요.');
-                return;
-            }
-
-            const userConfirmed = confirm("크리스마스 편지를 보냅니다 🎄");
-
-            // 사용자가 확인을 눌렀을 때
-            if (userConfirmed) {
-                // 서버로 메시지 전송
-                fetch('/save-message', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ nickname, message })
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            alert('편지가 성공적으로 전송되었습니다!');
-                            window.location.href = 'am.html';  // 전송 후 a.html로 이동
-                        } else {
-                            alert('편지 전송에 실패했습니다.');
-                        }
-                    })
-                    .catch(error => {
-                        alert('서버 오류로 전송에 실패했습니다.');
-                    });
-            }
-        }
-
-        // 눈송이 애니메이션 추가
-        for (let i = 0; i < 200; i++) {
-            const snow = document.createElement("div");
-            snow.className = "snow";
-            snow.style.opacity = Math.random();
-
-            const startX = Math.random() * 100 - 50;
-            const endX = startX + (Math.random() * 20 - 10);
-            const scale = Math.max(Math.random(), 0.5);
-
-            const keyframe = [
-                { transform: `translate(${startX}vw, 0vh) scale(${scale})` },
-                { transform: `translate(${endX}vw, 100vh) scale(${scale})` },
-            ];
-
-            const option = {
-                duration: 15000 + Math.random() * 5000,
-                easing: "linear",
-                iterations: Infinity,
-                delay: -Math.random() * 20000,
-            };
-
-            snow.animate(keyframe, option);
-            document.body.appendChild(snow);
-        }
-    </script>
+        snow.animate(keyframe, option);
+        document.body.appendChild(snow);
+    }
+</script>
 </body>
 
 </html>
