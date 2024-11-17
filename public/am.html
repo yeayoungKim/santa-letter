@@ -338,6 +338,13 @@
 </div>
 </body>
 <script>
+
+    // 약관 버튼 클릭 이벤트
+    document.getElementById("toggle-btn").addEventListener("click", function () {
+        const content = document.getElementById("content");
+        content.classList.toggle("show");
+    });
+
     for (let i = 0; i < 200; i++) {
         const snow = document.createElement("div");
         snow.className = "snow";
